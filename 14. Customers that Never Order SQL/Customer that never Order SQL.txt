@@ -1,0 +1,11 @@
+--Write an SQL query to report all customers who never order anything
+--Return the result table in any order.
+
+SELECT C.name as Customers
+FROM Customers as C
+LEFT JOIN 
+Orders as O
+ON C.id=O.customerId
+WHERE O.id is NULL;
+
+

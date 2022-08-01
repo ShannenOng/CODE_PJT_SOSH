@@ -1,0 +1,31 @@
+181. Leetcode
+--Write an SQL query to find the employees who earn more than their managers.
+--Return the result table in any order.
+
+With Emp AS
+(SELECT id,
+        name,
+        salary,
+        managerId
+FROM Employee 
+WHERE managerID is not NULL),
+Manager AS
+(SELECT id, 
+        salary as ManagerSalary
+FROM Employee
+WHERE managerID is NULL)
+SELECT name as Employee 
+FROM Emp
+LEFT JOIN Manager
+ON Emp.managerId=Manager.id
+WHERE Emp.salary > Manager.ManagerSalary;
+
+SELECT
+    a.Name AS 'Employee'
+FROM
+    Employee AS a,
+    Employee AS b
+WHERE
+    a.ManagerId = b.Id
+        AND a.Salary > b.Salary
+;

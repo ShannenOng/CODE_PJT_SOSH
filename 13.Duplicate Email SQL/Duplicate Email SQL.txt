@@ -1,0 +1,12 @@
+182. Leetcode
+
+--Write an SQL query to report all the duplicate emails.
+--Return the result table in any order.
+
+SELECT DISTINCT email as Email
+FROM 
+(SELECT email, 
+	 COUNT(email) as CT
+FROM Person
+GROUP BY email) as C
+WHERE C.CT>1;
